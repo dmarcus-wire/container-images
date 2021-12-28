@@ -1,0 +1,16 @@
+# use:
+## podman build --format=docker -t httpd-init . 
+## podman run -d --name myhttpd -p 8081:80 .
+# installs httpd package
+# enables httpd service to start at boot
+# creates a test index.html landing page
+# exposes the web server to the host on port 80
+# starts the systemd init service (/sbin/init) when the container starts
+
+FROM registry.access.redhat.com/ubi8/ubi-init
+RUN yum install -y httpd; yum clean all; systemctl enable httpd;
+RUN echo "Successful Web Server Test" > /var/www/html/index.html
+RUN mkdir /etc/systemd/system/httpd.service.d/;echo -e '[Service]\nRestart=always' > /etc/systemd/system/httpd.service.d/httpd.conf
+EXPOSE 80
+CMD [ "/sbin/init" ]
+

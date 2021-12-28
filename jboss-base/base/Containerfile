@@ -1,0 +1,12 @@
+## use 'podman build' to build the new image based on the dockerfile
+## podman build -t myeapimage .
+## use podman run to use that image
+## 'podman run' myeapimage
+
+# create a new image based on JBOSS EAP image
+# run $JBOSS_HOME/bin/standalone.sh -b 0.0.0.0 0-bmanagement 0.0.0.0 if no commands are pass
+FROM registry.redhat.io/jboss-eap-7/eap73-openjdk11-openshift-rhel8:7.3.9-3.1638383381
+EXPOSE 9990
+# $JBOSS_HOME is set to /opt/eap
+CMD ["/opt/eap/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+
