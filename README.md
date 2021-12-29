@@ -70,3 +70,24 @@ yum module install -y container-tools
 yum install -y podman-docker
 ```
 
+## Tools
+
+### Skopeo
+- inspect images on remote registries without downloading the entire image and layers
+- copy images, signing images, syncing them and converting across formats and compression
+
+### Podman
+- manage containers and volumes mounted to them
+- pods made from groups of containers
+- by default, Podman contaienrs are unprivileged and cannot modify the host OS 
+- privileged containers, set via podman run --privileged is: given the same access to devices as the user launching the container, disables security features that isolate the container.
+- less privileges, you can run the more secure by setting the following
+```
+$ podman run --name=unprivileged_podman --security-opt label=disable --user podman --device /dev/fuse registry.access.redhat.com/rhel8/podman podman run ubi8 echo hello
+```
+
+### Buildah
+- create working container, from scratch, existing image, working container or containerfile
+- mount/un working container root filesystem
+
+
