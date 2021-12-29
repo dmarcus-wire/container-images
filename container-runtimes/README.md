@@ -6,7 +6,7 @@ What is a container runtime? Simply, it's a software that can host containers at
 - used by Podman, Buildah, CRI-O to launch containers
 - runc reads the runtime spec, configs the linux kernel and starts the container
 - lightweight and portable container runtime
-- OCI spec
+- OCI complaint (default)
 - shares low-level code with Docker, but not dependent
 - supports linux namespace
 - supports live migration
@@ -18,7 +18,7 @@ What is a container runtime? Simply, it's a software that can host containers at
 - written in C
 - lower-level and interaces with kernel better
 - lightweight, so it compiles to a smaller size, thus has a low-memory footprint 
-- OCI spec
+- OCI compliant
 - written in C
 - 50x smaller and 2x faster than runc binary
 - set minimal number of processes

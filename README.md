@@ -25,6 +25,8 @@ efficiently deliver new instances of the same software to new environments witho
 1. Repository: the location of the container image, the layers that make it up and the metadata. Format is typically registry_server/namespace/repository:tag
 1. Tag: a tool for image builders to communicate which layers are best to consume or versions. Not mandatory, just best practice.
 1. Namespace: used in Registries or Kernels. On Registries, a tool for separating groups of repositories (e.g. username, organization, logical, products, etc.). In kernels, enable each container to have it's own mountpoint, network interface, user identifiers, process identifiers, etc. 
+1. Containers: the smallest unit you can manage with Podman, Skopeo and Buildah tools 
+1. Pods: the smallest comput units you can create, deploy and manage made up of 1:n containers. 
 
 Often teams start with a Container Host and pull some Container Images from a Registry. They customize, push and pull to a Registry Server to share with others. Then, they want to wire a few containers together and deploy them as a unit. At some point, they want to push thta unit into a pipeline (Dev > QA > Prod), which is where an Orchestration tool enters. 
 
