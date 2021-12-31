@@ -87,7 +87,11 @@ $ podman run --name=unprivileged_podman --security-opt label=disable --user podm
 ```
 
 ### Buildah
-- create working container, from scratch, existing image, working container or containerfile
+Differs from `podman build`
+- No container runtime nor daemon is required
+- You can build based on another container or start with an empty image
+- allows for smaller images. because it doesnt include build tools inside the image
+- without build tools: reduces size of images, increases security excluding software (gcc, yum,  make, etc.), uses fewer resources to transport
 - mount/un working container root filesystem
 
 
