@@ -1,0 +1,9 @@
+
+# Runs moon-buggy container inside Podman container
+podman login registry.redhat.io
+podman run --privileged --name podman_container -it registry.redhat.io/rhel8/podman /bin/bash
+vim Containerfile
+FROM registry.redhat.com/ubi8/ubi
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+RUN yum -y install moon-buggy && yum clean all
+CMD ["/usr/bin/moon-buggy"]
