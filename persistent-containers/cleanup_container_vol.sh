@@ -11,3 +11,5 @@ echo "remove images name $IMAGE"
 podman rmi -a
 echo "remove the volume"
 podman volume rm $VOLUME
+echo "print all the volumes just for awareness"
+podman volume ls
