@@ -6,8 +6,10 @@
 - provides API to connect to components (database, etc.)
 - organizes APIs in subsystems for different behaviors
 - compatible with Jakarta EE 8 specs (web profile, full-platform)
+- Jakarta EE 8 defines different profiles (Web, Platform
 - each major version is tested, stabilized and certified
-- major versions are forked from WildFlu community project
+- major versions are forked from WildFly community project
+- WildFly is a powerful, modular, & lightweight application server that helps you build amazing applications.
 - Standalone server for individual instances and Managed Domain for groups of isntances from a single control point
 - standalone server that supports 1x server instance
 - centralized management of multiple server instances and physical hosts
