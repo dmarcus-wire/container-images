@@ -65,3 +65,20 @@ podman run --name=myubi -dt --runtime=<runtime> ubi8
 podman ps -a
 podman inspect myubi --format "{{.OCIRuntime}}"
 ```
+
+## permenantly changing the runtime
+1. edit the containers.conf file
+1. verification via run and inspect
+```
+vim /etc/containers/containers.conf
+[engine]
+runtime ="<runtime>"
+
+podman run --name=myubi -dt ubit8 bash
+podman inspect myubi --format "{{.OCIRuntime}}"
+```
+
+## references
+1. https://www.redhat.com/sysadmin/introduction-crun
+1. https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/assembly_working-with-containers_building-running-and-managing-containers#con_the-runc-container-runtime_assembly_working-with-containers
+
