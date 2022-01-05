@@ -1,0 +1,12 @@
+# TensorFlow Pipeline
+
+https://www.tensorflow.org/tfx/tutorials
+
+## Simple
+https://www.tensorflow.org/tfx/tutorials/tfx/penguin_simple
+1. Setup variables
+1. Prepare some data
+1. Prepare TFX Pipeline:
+	- Read in data files and convert them to TFX internal format
+	- Train an ML model and save the model
+	- Push or copy the trained model outside of the TFX Pipeline as a deployment process

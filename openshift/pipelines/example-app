@@ -1,0 +1,5 @@
+# Self serving CI/CD pipeline for an application:
+
+https://access.redhat.com/documentation/en-us/openshift_container_platform/4.9/html-single/cicd/index#creating-applications-with-cicd-pipelines
+
+https://github.com/openshift/pipelines-tutorial/tree/pipelines-1.6

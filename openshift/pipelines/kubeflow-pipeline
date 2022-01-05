@@ -1,0 +1,15 @@
+# Kubeflow Pipelines
+
+https://www.kubeflow.org/docs/components/pipelines/tutorials/build-pipeline/
+
+## Basic Pipeline
+https://github.com/kubeflow/pipelines/tree/master/samples/tutorials
+
+## Arrikto Pipeline
+https://codelabs.arrikto.com/codelabs/minikf-kale-katib-kfserving/index.html?index=..%2F..index#0
+
+1. Install Kubeflow with MiniKF
+1. Convert you Notebook to Kubeflow Pipelines
+1. Run Kubeflow Pipelines with hyperparameter tuning 
+1. Server the model from the notebook
+1. Automatically version the data in the notebook and pipeline steps

@@ -1,0 +1,9 @@
+# Scikit-Learn Pipelines
+
+https://scikit-learn.org/stable/modules/compose.html#combining-estimators
+
+Pipeline. Used to chain multiple estimators into one. Useful with a fixed sequence of steps in processing data, extracting features, normalization and classification.
+
+A common mistake with feature selection is to search a subset of discriminative features on a full dataset instead of only using the training set. scikit-pipeline prevents  this. 
+
+sklearn is Python's general purpose machine learning library, and it features a lot of utilities not just for building learners but for pipelining and structuring them as well.
