@@ -1,0 +1,16 @@
+# invokes jboss-cli.sh and uses the --commands flag to pass in a set of commandds to modify the configuration.
+FROM registry.access.redhat.com/jboss-eap-7-tech-preview/eap72-openshift
+
+# copies my-commands.txt from the host and adds to $JBOSS_HOME
+COPY my-commands.txt $JBOSS_HOME
+
+USER root
+
+# updates the permissions because they were copied in as root
+RUN chown jboss:jboss $JBOSS_HOME/my_commands.txt
+
+# JBoss EAP container runs as jboss user
+USER jboss
+
+RUN $JBOSS_HOME/jboss/jboss-cli.sh --commands=embed-server,run-batch\ --file=$JBOSS_HOME/my-commands.txt,stop-embedded-server
+
