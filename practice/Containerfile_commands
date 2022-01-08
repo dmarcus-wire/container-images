@@ -1,0 +1,7 @@
+# Creates a new image based on the default JBOSS EAP Image
+# runs the standalone.sh if no commands are passed 
+FROM registry.access.redhat.com/jboss-eap-7-tech-preview/eap70
+EXPOSE 9990
+CMD ["/opt/eap/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+
+# 'run podman build --tag=new_image_name .' to build the image

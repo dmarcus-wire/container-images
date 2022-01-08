@@ -46,6 +46,6 @@ podman run -it jboss/wildfly-admin
 
 ## using OpenShift automation 
 
-References:
+## References:
 1. https://design.jboss.org/redhatdeveloper/marketing/docker_cheatsheet/cheatsheet/images/docker_cheatsheet_r2v2.pdf
 1. https://access.redhat.com/documentation/en-us/red_hat_developer_studio/12.9/html/getting_started_with_container_and_cloud-based_development/developing_with_docker

@@ -45,3 +45,9 @@ ENTRYPOINT "/usr/local/bin/myecho"
 buildah bud -t myecho .
 podman run --name myecho localhost/myecho
 ```
+
+## Persist changes from a running container with Podman
+Create a new image based on the container with changes made.
+```
+podman commit -m 'message' -a 'author' running-container-id new-image-name
+```

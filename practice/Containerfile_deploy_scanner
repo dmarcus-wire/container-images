@@ -1,0 +1,10 @@
+# Example Containerfile for deploying an App using the deployment scanner
+# copies the app.war file to a location, which is scannedd by the deployment
+# scanner and updates the file to have appropriate permissions 
+# this causes the app.war to be deployed when JBOSS EAP instance is started with container
+# JBoss EAP run as the jboss user but copied files are brought in as root, so must change
+FROM registry.access.redhat.com/jboss-eap-7-tech-preview/eap70
+COPY app.war $JBOSS_HOME/standalone/deployments/
+USER root
+RUN chown jboss:jboss $JBOSS_HOME/standalone/deployments/app.war
+USER jboss
