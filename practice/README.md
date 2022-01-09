@@ -1,6 +1,6 @@
 # Skills testings
 
-RUN JBOSS EAP in a container
+## RUN JBOSS EAP in a container
 
 ```
 # search for image
@@ -43,17 +43,44 @@ podman run -d --name wildfly -e WILDFLY_PASSWORD -v /path/to/wildfly-persist:/bi
 touch wildfly.log
 podman logs >> wildfly.log
 ```
-RUN Portgresql in a container
+
+## RUN Portgresql in a container
 
 ```
+# search for the postgresql image
+podman search quay.io/postgresql
+
+# pull the iamge
+podman pull quay.io/postgresql
+
+# list local images
+podman images
+
+# run the postgresql container
+podman run -d --name postgresql -e POSTGRESQL_PASSWORD=password postgresql
 ```
 
-CREATE a pod
+## Create a pod
 ```
 ```
-RUN both containers in a single existing pod
+
+## RUN both jboss and postrgesql containers in a single existing pod
 ```
+# pull jboss container image
+podman pull quay.io/bitnami/wildfly
+
+# pull postgresql container image
+podman pull quay.io/bitnami/postgresql
+
+# create a pod
+podman pod create --name my_pod -p 8080:8080 -p 9990:9990
+
+# run jboss container in my_pod
+podman run -d --name wildfly --pod my_pod -e WILDFLY_PASSWORD=password bitnami/wildfly:latest
+
+podman run -d --name postgresql --pod my_pod -e POSTGRESQL_PASSWORD=password bitnami/wildfly:latest
 ```
+
 WRITE a shell script to run, extract logs and cleanup pods with more than 1 container
 
 ```
