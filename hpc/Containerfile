@@ -1,0 +1,8 @@
+FROM registry.access.redhat.com/ubi8/ubi
+
+RUN yum -y install openmpi-devel wget && \
+    yum clean all
+
+RUN wget https://raw.githubusercontent.com/open-mpi/ompi/master/test/simple/ring.c && \
+    /usr/lib64/openmpi/bin/mpicc ring.c -o /home/ring && \
+    rm -f ring.c
