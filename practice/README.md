@@ -38,6 +38,7 @@ podman run --name wildfly -v /path/to/persistence:/bitnami/wildfly jboss/wildfly
 mkdir -pv ./wildfly-persist
 sudo semanage fcontext -a -t container_file_t '/path/to/wildfly-persist(/.*)?'
 sudo restorecon -Rv /path/to/wildfly-persist
+podman unshare chown -Rv UID:UID /path/to/wildfly-persist
 podman pod create --name my_pod -p 8080:8080 -p 9990:9990 
 podman run -d --name wildfly -e WILDFLY_PASSWORD -v /path/to/wildfly-persist:/bitnami/wildfly -e WILDFLY_PASSWORD=my_password bitnami/wildfly:latest 
 touch wildfly.log
@@ -62,6 +63,12 @@ podman run -d --name postgresql -e POSTGRESQL_PASSWORD=password postgresql
 
 ## Create a pod
 ```
+# list pods
+podman pod ps 
+podman ps -a --pods
+
+# create pod with ports exposed for containers
+podman pod create --name my_pod -p 8080:8080 -p 9990:9990
 ```
 
 ## RUN both jboss and postrgesql containers in a single existing pod
@@ -79,6 +86,11 @@ podman pod create --name my_pod -p 8080:8080 -p 9990:9990
 podman run -d --name wildfly --pod my_pod -e WILDFLY_PASSWORD=password bitnami/wildfly:latest
 
 podman run -d --name postgresql --pod my_pod -e POSTGRESQL_PASSWORD=password bitnami/wildfly:latest
+
+# create the container and pod in the same commandd
+podman run -d --pod new:my_pod --name postgresql --restart=always -e POSTGRESQL_PASSWORD=password quay.io/bitnami/postgresql
+
+podman run -d --pod my_pod --name wildfly --restart=always -e WILDFLY_PASSWORD=password quay.io/bitnami/wildfly:latest
 ```
 
 WRITE a shell script to run, extract logs and cleanup pods with more than 1 container
@@ -86,6 +98,16 @@ WRITE a shell script to run, extract logs and cleanup pods with more than 1 cont
 ```
 # view the wildfly logs
 podman logs wildfly
+
+# tail last 10 log lines
+podman logs --tail=10 wildfly
+
+# write logs to a file
+touch wildfly.logs
+touch postgresql.logs
+
+podman logs --tail=10 wildfly >> wildfly.logs
+podman logs --tail=10 postgresql >> postgresql.logs
 ```
 
 EXTEND JBOSS container image via Containerfile 
@@ -102,5 +124,4 @@ oc process -f
 RUN Postgresql from an OCP template, use labels to connect to JBOSS
 
 References:
-- https://quay.io/repository/bitnami/wildfly
 

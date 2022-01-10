@@ -1,0 +1,18 @@
+# pull the wildfly container image 
+FROM quay.io/bitnami/wildfly:latest
+
+MAINTAINER david marcus dmarcus@redhat.com
+
+ENV JBOSS_HOME /opt/jboss/wildfly
+
+USER root
+
+COPY /home/desktop/jboss.zip /opt/jboss
+
+RUN $JBOSS_HOME/bin/add-user.sh adminUser StrongPassword#1 --silent
+
+USER jboss
+
+EXPOSE 8080 9990 9999
+
+CMD ["/opt/eap/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

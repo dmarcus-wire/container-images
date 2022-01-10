@@ -1,0 +1,32 @@
+# JBoss EAP image ship with only public interface bound to 0.0.0.0 (-b 0.0.0.0)
+FROM registry.access.redhat.com/jboss-eap-7-tech-preview
+
+ENV WILDFLY_VERSION 24.0.0.Final
+
+ENV WILDFLY_SHA1 22342323...
+
+ENV JBOSS_HOME /opt/jboss/wildfly
+
+USER root
+
+COPY my-commands.txt $JBOSS_HOME
+
+COPY app.war $JBOSS_HOME/standalone/deployments/
+
+RUN $JBOSS_HOME/bin/add-user.sh adminUser StrongPassword#1 --silent
+
+RUN cd $HOME \
+	&& curl -O https://.... \
+	&& sha1sum wildfly-$WILDFLY_VERSION.tar.gz \ 
+	&& tar xf wildfly.tar.gz \
+	&& mv $HOME/wildfly-$WILDFLY_VERSION $JBOSS_HOME \
+	&& chown -R jboss:0 ${JBOSS_HOME} \
+	&& chmod -R g+rw ${JBOSS_HOME}	
+
+USER jboss
+
+EXPOSE 8080:8080 9990
+
+CMD ["/opt/eap/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+
+# podman build -t jboss .
